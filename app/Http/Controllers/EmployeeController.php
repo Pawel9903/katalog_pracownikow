@@ -26,11 +26,25 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        Employee::create($request->all());
+        $validationData = $request->validate([
+           "name" => "required",
+           "surname" => "required",
+           "phone" => "required|numeric",
+           "email" => "required|email",
+           "description" => "required",
+        ]);
 
-        $departmentsId = $request->input('departmentsList');
-        $employee = new Employee();
-        $employee->departments()->attach($departmentsId);
+        $employee = new Employee($request->all());
+
+        if($request->imgUrl)
+        {
+            $photoName = time().'.'.$request->imgUrl->getClientOriginalExtension();
+            $request->imgUrl->move(public_path('avatars'), $photoName);
+            $employee->imgUrl = $photoName;
+        }
+
+
+            $employee->save();
 
        return redirect()->action('EmployeeController@index');
     }
@@ -56,6 +70,14 @@ class EmployeeController extends Controller
 
     public function update($id, Request $request)
     {
+        $validationData = $request->validate([
+            "name" => "required",
+            "surname" => "required",
+            "phone" => "required|numeric",
+            "email" => "required",
+            "description" => "required",
+        ]);
+
         $employee = Employee::findOrFail($id);
         $employee->update($request->all());
         return redirect()->action('EmployeeController@index');

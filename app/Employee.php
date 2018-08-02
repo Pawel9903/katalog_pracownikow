@@ -13,6 +13,7 @@ class Employee extends Model
         'phone',
         'email',
         'description',
+        'imgUrl'
     ];
 
     public function departments()

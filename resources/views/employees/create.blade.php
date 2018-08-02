@@ -1,7 +1,17 @@
 @extends('adminlte::page')
 
 @section('content')
-    {{ Form::open(array('route'=>'employees.index')) }}
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    {{ Form::open(['route'=>'employees.index', 'files' => true]) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Imię:') }}
@@ -15,7 +25,7 @@
 
     <div class="form-group">
         {{ Form::label('phone', 'Numer telefonu:') }}
-        {{ Form::text('phone', null, ['class'=>'form-control']) }}
+        {{ Form::text('phone', (48), ['class'=>'form-control']) }}
     </div>
 
     <div class="form-group">
@@ -26,6 +36,11 @@
     <div class="form-group">
         {{ Form::label('description', 'Opis:') }}
         {{ Form::textarea('description', null, ['class'=>'form-control']) }}
+    </div>
+
+    <div class="form-group">
+        {{Form::label('imgUrl', 'Dodaj zdjęcie',['class' => 'control-label'])}}
+        {{ Form::file('imgUrl') }}
     </div>
 
     <div class="form-group">

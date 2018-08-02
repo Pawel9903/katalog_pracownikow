@@ -1,7 +1,17 @@
 @extends('adminlte::page')
 
 @section('content')
-    {{ Form::open(array('method'=>'PATH','route'=>'employees.index')) }}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    {{ Form::model($employee,['method'=>'PATCH','action'=>['EmployeeController@update', $employee->id]]) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Imię:') }}
