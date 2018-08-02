@@ -11,4 +11,24 @@
 |
 */
 
-Route::get('/', 'EmployeeController@index');
+Route::get('/', function (){
+    return view('welcome');
+});
+
+Route::get('/users', 'UserController@users');
+
+
+/*Route::get('/employees/list', 'EmployeeController@employees');
+Route::get('/employees/create', 'EmployeeController@create');
+Route::post('/employees', 'EmployeeController@store');
+Route::delete('/employees/delete/{id}',['uses' => 'EmployeeController@delete', 'as' => 'employee.delete']);
+Route::get('/employees/details/{id}', 'EmployeeController@details');*/
+
+Route::group(['middleware' => ['web']], function ()
+{
+    Route::resource('employees', 'EmployeeController');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

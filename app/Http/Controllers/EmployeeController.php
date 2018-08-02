@@ -2,15 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use App\Employee;
+use App\Section;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class EmployeeController extends Controller
 {
     public function index()
     {
-        $employee = Employee::latest()->get();
+        $employees = Employee::latest()->get();
 
-        return view('employees.index')->with('employee', $employee);
+        return view('employees.index', ['employees' => $employees]);
+    }
+
+    public function create()
+    {
+
+        $departments = Department::pluck('name', 'id');
+        return view('employees.create', ['departments' => $departments]);
+    }
+
+    public function store(Request $request)
+    {
+        Employee::create($request->all());
+
+        $departmentsId = $request->input('departmentsList');
+        $employee = new Employee();
+        $employee->departments()->attach($departmentsId);
+
+       return redirect()->action('EmployeeController@index');
+    }
+
+    public function show($id)
+    {
+        $employee = Employee::findOrfail($id);
+
+        return view('employees.show', ['employee'=>$employee]);
+    }
+
+    public function destroy($id)
+    {
+        $employee = Employee::where('id', $id)->delete();
+        return redirect()->action('EmployeeController@index');
+    }
+
+    public function edit($id)
+    {
+        $employee = Employee::findOrFail($id);
+        return view('employees.edit', ['employee'=>$employee]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $employee = Employee::findOrFail($id);
+        $employee->update($request->all());
+        return redirect()->action('EmployeeController@index');
     }
 }
