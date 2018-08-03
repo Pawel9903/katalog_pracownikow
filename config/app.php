@@ -169,6 +169,7 @@ return [
          */
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

@@ -39,8 +39,8 @@
     </div>
 
     <div class="form-group">
-        {{ Form::label('sectionList', 'Wybierz dział:') }}
-        {{ Form::select('sectionList', ['1' => 'Księgowość', '2'=>'IT' ] , null, ['class'=>'form-control', 'multiple']) }}
+        {{ Form::label('departmentsList', 'Wybierz dział(y):') }}
+        {{ Form::select('departmentsList[]', $departments , null, ['class'=>'form-control', 'multiple']) }}
     </div>
 
     <div class="form-group">

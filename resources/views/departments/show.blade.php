@@ -2,10 +2,17 @@
 
 
 @section('content')
-    <ul>
-        <li>Nazwa: {{ $department->name }}</li>
-        <li>Opis: {{ $department->description }}</li>
-    </ul>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">Nazwa działu: {{ $department->name }}</div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">Opis działu: {{ $department->description }}</div>
+        </div>
+    </div>
+
+    <h4>Pracownicy działu</h4>
     <table class="table table-striped">
         <thead>
         <tr>

@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-10">
                 <div class="well well-sm">
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
@@ -26,6 +26,22 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="">
+            <a class="btn btn-success" href="{{ route('employees.edit', $employee->id) }}">edytuj</a>
+            <form action="{{ route('employees.destroy', ['id' => $employee->id]) }}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Usuń</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
 
 
 @stop

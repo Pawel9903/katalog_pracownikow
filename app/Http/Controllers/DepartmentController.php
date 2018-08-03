@@ -43,13 +43,16 @@ class DepartmentController extends Controller
         $department = new Department($request->all());
         $department->save();
 
+        $request->session()->flash('success', 'Dodano dział');
         return redirect()->action('DepartmentController@index');
     }
 
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $department = Department::where('id', $id)->delete();
+
+        $request->session()->flash('success', 'Usunięto dział');
         return redirect()->action('DepartmentController@index');
     }
 
@@ -68,6 +71,8 @@ class DepartmentController extends Controller
 
         $department = Department::findOrFail($id);
         $department->update($request->all());
+
+        $request->session()->flash('success', 'Edytowano dział');
         return redirect()->action('DepartmentController@index');
     }
 }
