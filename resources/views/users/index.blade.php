@@ -5,17 +5,19 @@
    <table class="table table-striped">
        <thead>
             <tr>
-                <th>Nazwa</th>
-                <th>Opis</th>
+                <th>Login</th>
+                <th>Hasło</th>
+                <th>Email</th>
             </tr>
        </thead>
-            @foreach($departments as $department)
+            @foreach($users as $user)
                 <tr>
-                    <th>{{$department->name}}</th>
-                    <th>{{$department->description}}</th>
-                    <th><a href="{{ route('departments.show', $department->id) }}">wyświetl</a></th>
-                    <th><a href="{{ route('departments.edit', $department->id) }}">edytuj</a></th>
-                    <th><form action="{{ route('departments.destroy', ['id' => $department->id]) }}" method="post">
+                    <th>{{$user->name}}</th>
+                    <th>{{$user->password}}</th>
+                    <th>{{$user->email}}</th>
+                    <th><a href="{{ route('users.show', $user->id) }}">wyświetl</a></th>
+                    <th><a href="{{ route('users.edit', $user->id) }}">edytuj</a></th>
+                    <th><form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <div class="form-group">

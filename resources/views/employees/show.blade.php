@@ -15,6 +15,10 @@
                                 {{ $employee->name." ".$employee->surname }}</h4>
                                 <p>email: {{ $employee->email }}</p>
                                 <p>tel: {{ $employee->phone }}</p>
+                                <p>działy:</p>
+                                    @foreach($employee->departments as $department)
+                                    <p>{{ $department->name }}</p>
+                                    @endforeach
                                 <p>opis: {{ $employee->description }}</p>
                         </div>
                     </div>

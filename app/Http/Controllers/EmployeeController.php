@@ -10,6 +10,11 @@ use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class EmployeeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['index', 'show']]);
+    }
     public function index()
     {
         $employees = Employee::latest()->get();
@@ -43,8 +48,9 @@ class EmployeeController extends Controller
             $employee->imgUrl = $photoName;
         }
 
-
-            $employee->save();
+        $employee->save();
+        $departmentId = $request->input('departmentsList');
+        $employee->departments()->attach($departmentId);
 
        return redirect()->action('EmployeeController@index');
     }
@@ -77,6 +83,8 @@ class EmployeeController extends Controller
             "email" => "required",
             "description" => "required",
         ]);
+
+
 
         $employee = Employee::findOrFail($id);
         $employee->update($request->all());

@@ -7,12 +7,26 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('admin', ['except' => ['index', 'show']]);
+    }
+
     public function index()
     {
         $departments = Department::latest()->get();
 
         return view('departments.index', ['departments' => $departments]);
     }
+
+    public function show($id)
+    {
+        $department = Department::findOrfail($id);
+
+        return view('departments.show', ['department'=>$department]);
+    }
+
 
     public function create()
     {

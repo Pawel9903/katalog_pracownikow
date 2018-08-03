@@ -15,9 +15,6 @@ Route::get('/', function (){
     return view('welcome');
 });
 
-Route::get('/users', 'UserController@users');
-
-
 /*Route::get('/employees/list', 'EmployeeController@employees');
 Route::get('/employees/create', 'EmployeeController@create');
 Route::post('/employees', 'EmployeeController@store');
@@ -34,6 +31,14 @@ Route::group(['middleware' => ['web']], function ()
     Route::resource('departments', 'DepartmentController');
 });
 
+Route::group(['middleware' => ['web']], function ()
+{
+    Route::resource('users', 'UserController');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
