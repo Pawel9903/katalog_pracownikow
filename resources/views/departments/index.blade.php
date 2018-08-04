@@ -18,8 +18,8 @@
                     <th>{{$department->name}}</th>
                     <th>{{ str_limit($department->description, 10)}}</th>
                     <th>{{ str_limit($department->created_at)}}</th>
-                    <th><a href="{{ route('departments.show', $department->id) }}">wyświetl</a></th>
-                    <th><a href="{{ route('departments.edit', $department->id) }}">edytuj</a></th>
+                    <th><a class="btn btn-success" href="{{ route('departments.show', $department->id) }}">wyświetl</a></th>
+                    <th><a class="btn btn-primary" href="{{ route('departments.edit', $department->id) }}">edytuj</a></th>
                     <th><form action="{{ route('departments.destroy', ['id' => $department->id]) }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}

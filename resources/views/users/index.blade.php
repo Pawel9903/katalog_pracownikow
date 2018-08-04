@@ -19,8 +19,8 @@
                     <th>{{$user->name}}</th>
                     <th>{{$user->email}}</th>
                     <th>{{$user->created_at}}</th>
-                    <th><a href="{{ route('users.show', $user->id) }}">wyświetl</a></th>
-                    <th><a href="{{ route('users.edit', $user->id) }}">edytuj</a></th>
+                    <th><a class="btn btn-success" href="{{ route('users.show', $user->id) }}">wyświetl</a></th>
+                    <th><a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">edytuj</a></th>
                     @if($user->admin != 1)
                     <th><form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post">
                             {{ csrf_field() }}
@@ -29,6 +29,8 @@
                                 <button type="submit" class="btn btn-danger">Usuń</button>
                             </div>
                         </form></th>
+                        @else
+                        <th></th>
                         @endif
                 </tr>
             @endforeach
