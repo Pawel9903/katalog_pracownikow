@@ -17,7 +17,7 @@ class EmployeeController extends Controller
     }
     public function index()
     {
-        $employees = Employee::latest()->get();
+        $employees = Employee::sortable()->paginate(5);
 
         return view('employees.index', ['employees' => $employees]);
     }
@@ -86,8 +86,6 @@ class EmployeeController extends Controller
             "email" => "required",
             "description" => "required",
         ]);
-
-
 
         $employee = Employee::findOrFail($id);
         $employee->update($request->all());

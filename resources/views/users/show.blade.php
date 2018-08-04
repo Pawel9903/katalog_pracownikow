@@ -2,25 +2,27 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6">
-                <div class="well well-sm">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-4">
-                            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
-                        </div>
-                        <div class="col-sm-6 col-md-8">
-                            <h4>
-                                {{ $user->name }}
-                                <p>hasło: {{ $user->password }}</p>
-                                <p>email: {{ $user->email }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">Imię: {{ $user->name }}</div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">Email: {{ $user->email }}</div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">Data dodania: {{ $user->created_at }}</div>
         </div>
     </div>
-
-
+    <div class="container">
+        <div class="">
+            <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Usuń</button>
+                </div>
+            </form>
+        </div>
+        <a class="btn btn-success" href="{{ route('users.edit', $user->id) }}">edytuj</a>
+    </div>
 @stop

@@ -9,10 +9,11 @@
    <table class="table table-striped">
        <thead>
             <tr>
-                <th>Imię</th>
-                <th>Nazwisko</th>
-                <th>Tel.</th>
-                <th>Email</th>
+                <th>@sortablelink('name', 'Imię')</th>
+                <th>@sortablelink('surname', 'Nazwisko')</th>
+                <th>@sortablelink('phone', 'Tel.')</th>
+                <th>@sortablelink('email', 'Email')</th>
+                <th>@sortablelink('created_at', 'Data dodania')</th>
             </tr>
        </thead>
             @foreach($employees as $employee)
@@ -21,6 +22,7 @@
                     <th>{{$employee->surname}}</th>
                     <th>{{$employee->phone}}</th>
                     <th>{{$employee->email}}</th>
+                    <th>{{$employee->created_at}}</th>
                     <th><a href="{{ route('employees.show', $employee->id) }}">wyświetl</a></th>
                     <th><a href="{{ route('employees.edit', $employee->id) }}">edytuj</a></th>
                     <th><form action="{{ route('employees.destroy', ['id' => $employee->id]) }}" method="post">
@@ -32,6 +34,8 @@
                         </form></th>
                 </tr>
             @endforeach
+       {!! $employees->appends(\Request::except('page'))->render() !!}
+
        <tbody>
 
        </tbody>

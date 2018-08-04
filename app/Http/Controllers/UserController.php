@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('admin');
     }
+
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::sortable()->paginate(5);
 
         return view('users.index', ['users' => $users]);
     }
@@ -75,8 +75,11 @@ class UserController extends Controller
 
 
         $user = User::findOrFail($id);
-        $user->password = Hash::make($request->password);
-        $user->update($request->all());
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->admin = $request->input('admin');
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
         $request->session()->flash('success', 'Edytowano użytkownika');
         return redirect()->action('UserController@index');
     }

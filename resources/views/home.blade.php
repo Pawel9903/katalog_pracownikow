@@ -3,9 +3,11 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Witaj w panelu pracowników</h1>
 @stop
 
 @section('content')
-    <p>You are logged in!</p>
+    @if(Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+    @endif
 @stop

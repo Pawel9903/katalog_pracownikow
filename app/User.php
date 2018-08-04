@@ -4,9 +4,15 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
+
+    use Sortable;
+
+    public $sortable = ['id', 'name', 'email', 'password', 'created_at', 'updated_at'];
+
     use Notifiable;
 
     /**

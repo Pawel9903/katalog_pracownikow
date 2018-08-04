@@ -15,7 +15,7 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $departments = Department::latest()->get();
+        $departments = Department::sortable()->paginate(5);
 
         return view('departments.index', ['departments' => $departments]);
     }
@@ -23,6 +23,8 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department = Department::findOrfail($id);
+        $department->sortable()->paginate(5);
+
 
         return view('departments.show', ['department'=>$department]);
     }

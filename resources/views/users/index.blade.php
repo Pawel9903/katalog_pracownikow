@@ -9,16 +9,16 @@
    <table class="table table-striped">
        <thead>
             <tr>
-                <th>Login</th>
-                <th>Hasło</th>
-                <th>Email</th>
+                <th>@sortablelink('name', 'Imię')</th>
+                <th>@sortablelink('email', 'Email')</th>
+                <th>@sortablelink('created_at', 'Data dodania')</th>
             </tr>
        </thead>
             @foreach($users as $user)
                 <tr>
                     <th>{{$user->name}}</th>
-                    <th>{{$user->password}}</th>
                     <th>{{$user->email}}</th>
+                    <th>{{$user->created_at}}</th>
                     <th><a href="{{ route('users.show', $user->id) }}">wyświetl</a></th>
                     <th><a href="{{ route('users.edit', $user->id) }}">edytuj</a></th>
                     @if($user->admin != 1)
@@ -32,6 +32,7 @@
                         @endif
                 </tr>
             @endforeach
+       {!! $users->appends(\Request::except('page'))->render() !!}
        <tbody>
 
        </tbody>

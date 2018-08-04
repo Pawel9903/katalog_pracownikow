@@ -29,7 +29,6 @@
 
     <div class="container">
         <div class="">
-            <a class="btn btn-success" href="{{ route('employees.edit', $employee->id) }}">edytuj</a>
             <form action="{{ route('employees.destroy', ['id' => $employee->id]) }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
@@ -37,6 +36,7 @@
                     <button type="submit" class="btn btn-danger">Usuń</button>
                 </div>
             </form>
+            <a class="btn btn-success" href="{{ route('employees.edit', $employee->id) }}">edytuj</a>
         </div>
     </div>
 

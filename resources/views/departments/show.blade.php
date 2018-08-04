@@ -19,7 +19,7 @@
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Telefon</th>
-            <th>emial</th>
+            <th>Emial</th>
         </tr>
         </thead>
         @foreach($department->employees as $employee)
