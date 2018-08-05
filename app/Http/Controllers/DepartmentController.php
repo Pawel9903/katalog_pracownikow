@@ -83,6 +83,6 @@ class DepartmentController extends Controller
     public function pdf($id)
     {
         $department = Department::findOrfail($id);
-        return PDF::loadView('departments.pdf',['department'=>$department])->stream('download.pdf');
+        return PDF::loadView('departments.pdf',['department'=>$department])->stream($department->name.'.pdf');
     }
 }

@@ -59,9 +59,9 @@ return [
     'mimes'                => 'The :attribute must be a file of type: :values.',
     'mimetypes'            => 'The :attribute must be a file of type: :values.',
     'min'                  => [
-        'numeric' => 'The :attribute must be at least :min.',
+        'numeric' => 'Pole :attribute musi mieć minimum :min znaków.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
+        'string'  => 'Pole :attribute musi mieć minimum :min znaków.',
         'array'   => 'The :attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
@@ -120,8 +120,9 @@ return [
         "name" => "Imię",
         "surname" => "Nazwisko",
         "phone" => "Tel.",
-        "emial" => "Email",
+        "email" => "Email",
         "description" => "Opis",
+        "password" => "Hasło",
     ],
 
 ];

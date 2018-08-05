@@ -1,7 +1,6 @@
 @extends('adminlte::page')
 
 @section('content')
-
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-10">
@@ -11,15 +10,19 @@
                             <img @if($employee->imgUrl) src="{{ asset('avatars/'.$employee->imgUrl) }} @endif" src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
                         </div>
                         <div class="col-sm-6 col-md-8">
-                            <h4>
-                                {{ $employee->name." ".$employee->surname }}</h4>
-                                <p>email: {{ $employee->email }}</p>
-                                <p>tel: {{ $employee->phone }}</p>
-                                <p>działy:</p>
-                                    @foreach($employee->departments as $department)
-                                    <p>{{ $department->name }}</p>
-                                    @endforeach
-                                <p>opis: {{ $employee->description }}</p>
+
+                                <h4>{{ $employee->name." ".$employee->surname }}</h4>
+                            <ul>
+                                <li>email: {{ $employee->email }}</li>
+                                <li>tel: {{ $employee->phone }}</li>
+                                    <li>działy:</li>
+                                <ul>
+                                @foreach($employee->departments as $department)
+                                    <li>{{ $department->name }}</li>
+                                @endforeach
+                                </ul>
+                                <li>opis: {{ $employee->description }}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -39,9 +42,4 @@
             <a class="btn btn-success" href="{{ route('employees.edit', $employee->id) }}">edytuj</a>
         </div>
     </div>
-
-
-
-
-
 @stop
