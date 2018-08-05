@@ -11,6 +11,7 @@
 |
 */
 
+use Barryvdh\DomPDF\Facade as PDF;
 Route::get('/', function (){
     return view('welcome');
 });
@@ -40,6 +41,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('pdf/{id}',array('as'=>'pdf','uses'=>'DepartmentController@pdf'));

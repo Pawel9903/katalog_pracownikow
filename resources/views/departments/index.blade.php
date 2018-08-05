@@ -13,7 +13,9 @@
                 <th>@sortablelink('created_at', 'Data dodania')</th>
             </tr>
        </thead>
-            @foreach($departments as $department)
+       <tbody>
+
+       @foreach($departments as $department)
                 <tr>
                     <th>{{$department->name}}</th>
                     <th>{{ str_limit($department->description, 10)}}</th>
@@ -30,8 +32,6 @@
                 </tr>
             @endforeach
        {!! $departments->appends(\Request::except('page'))->render() !!}
-
-       <tbody>
 
        </tbody>
    </table>

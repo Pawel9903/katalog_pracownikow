@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Employee;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -76,5 +78,11 @@ class DepartmentController extends Controller
 
         $request->session()->flash('success', 'Edytowano dział');
         return redirect()->action('DepartmentController@index');
+    }
+
+    public function pdf($id)
+    {
+        $department = Department::findOrfail($id);
+        return PDF::loadView('departments.pdf',['department'=>$department])->stream('download.pdf');
     }
 }

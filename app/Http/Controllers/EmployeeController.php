@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Department;
 use App\Employee;
 use App\Section;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 

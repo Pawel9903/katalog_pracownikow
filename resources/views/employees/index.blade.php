@@ -16,7 +16,8 @@
                 <th>@sortablelink('created_at', 'Data dodania')</th>
             </tr>
        </thead>
-            @foreach($employees as $employee)
+       <tbody>
+       @foreach($employees as $employee)
                 <tr>
                     <th>{{$employee->name}}</th>
                     <th>{{$employee->surname}}</th>
@@ -35,9 +36,6 @@
                 </tr>
             @endforeach
        {!! $employees->appends(\Request::except('page'))->render() !!}
-
-       <tbody>
-
        </tbody>
    </table>
 @stop
