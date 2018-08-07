@@ -2,6 +2,8 @@
 
 
 @section('content')
+    <h1>Lista Działów</h1>
+
     @if(Session::has('success'))
         <div class="alert alert-success">{{ Session::get('success') }}</div>
     @endif
@@ -21,8 +23,8 @@
                     <th>{{ str_limit($department->description, 10)}}</th>
                     <th>{{ str_limit($department->created_at)}}</th>
                     <th><a class="btn btn-success" href="{{ route('departments.show', $department) }}">wyświetl</a></th>
-                    <th><a class="btn btn-primary" href="{{ route('departments.edit', $department->id) }}">edytuj</a></th>
-                    <th><form action="{{ route('departments.destroy', ['id' => $department->id]) }}" method="post">
+                    <th><a class="btn btn-primary" href="{{ route('departments.edit', $department) }}">edytuj</a></th>
+                    <th><form action="{{ route('departments.destroy', ['department' => $department]) }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <div class="form-group">
@@ -35,4 +37,5 @@
 
        </tbody>
    </table>
+    <a class="btn btn-success" href="{{ route('departments.create') }}">Dodaj dział</a>
 @stop

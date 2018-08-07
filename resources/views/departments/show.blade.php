@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" href="{{ route('pdf', ['department'=>$department]) }}">Generuj PDF</a>
+    <a class="btn btn-primary" href="{{ route('departments.pdf', ['department'=>$department]) }}">Generuj PDF</a>
 
     <h4>Pracownicy działu:</h4>
     <table class="table table-striped">
@@ -47,4 +47,21 @@
 
         </tbody>
     </table>
+
+    <h3>Dodaj pracownika działu</h3>
+
+    {{ Form::model($department,['method'=>'GET','action'=>['DepartmentController@addEmployees', $department]]) }}
+
+
+    <div class="form-group">
+        {{ Form::label('employeesList', 'Wybierz pracownika:') }}
+        {{ Form::select('employeesList', $employees , null, ['class'=>'form-control']) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::submit('Dodaj pracownika',['class'=>'btn btn-primary']) }}
+    </div>
+
+    {{ Form::close() }}
+
 @stop

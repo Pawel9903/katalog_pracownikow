@@ -3,6 +3,8 @@
 
 @section('content')
 
+    <h1>Lista Użytkowników</h1>
+
     @if(Session::has('success'))
         <div class="alert alert-success">{{ Session::get('success') }}</div>
     @endif
@@ -24,7 +26,7 @@
                     <th><a class="btn btn-success" href="{{ route('users.show', $user) }}">wyświetl</a></th>
                     <th><a class="btn btn-primary" href="{{ route('users.edit', $user) }}">edytuj</a></th>
                     @if($user->admin != 1)
-                    <th><form action="{{ route('users.destroy', ['id' => $user]) }}" method="post">
+                    <th><form action="{{ route('users.destroy', ['user' => $user]) }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <div class="form-group">
@@ -39,4 +41,5 @@
        {!! $users->appends(\Request::except('page'))->render() !!}
        </tbody>
    </table>
+    <a class="btn btn-success" href="{{ route('users.create') }}">Dodaj użytkownika</a>
 @stop

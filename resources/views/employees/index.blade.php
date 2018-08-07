@@ -1,7 +1,8 @@
 @extends('adminlte::page')
 
-
 @section('content')
+    <h1 class="">Lista Pracowników</h1>
+
     @if(Session::has('success'))
         <div class="alert alert-success">{{ Session::get('success') }}</div>
     @endif
@@ -24,9 +25,9 @@
                     <th>{{$employee->phone}}</th>
                     <th>{{$employee->email}}</th>
                     <th>{{$employee->created_at}}</th>
-                    <th><a class="btn btn-success" href="{{ route('employees.show', $employee->id) }}">wyświetl</a></th>
-                    <th><a class="btn btn-primary" href="{{ route('employees.edit', $employee->id) }}">edytuj</a></th>
-                    <th><form action="{{ route('employees.destroy', ['id' => $employee->id]) }}" method="post">
+                    <th><a class="btn btn-success" href="{{ route('employees.show', $employee) }}">wyświetl</a></th>
+                    <th><a class="btn btn-primary" href="{{ route('employees.edit', $employee) }}">edytuj</a></th>
+                    <th><form class="" action="{{ route('employees.destroy', ['employee' => $employee]) }}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                             <div class="form-group">
@@ -38,4 +39,5 @@
        {!! $employees->appends(\Request::except('page'))->render() !!}
        </tbody>
    </table>
+    <a class="btn btn-success deletee" href="{{ route('employees.create') }}">Dodaj pracownika</a>
 @stop

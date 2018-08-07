@@ -26,8 +26,19 @@ class DepartmentController extends Controller
     {
         $department->sortable()->paginate(5);
 
+        $emplyees = Employee::pluck('surname', 'id');
 
-        return view('departments.show', ['department'=> $department]);
+        return view('departments.show', ['department'=> $department, 'employees' => $emplyees]);
+    }
+
+    public function addEmployees(Request $request, Department $department)
+    {
+        $employeeId = $request->input('employeesList');
+        $department->employees()->attach($employeeId);
+        $emplyees = Employee::pluck('surname', 'id');
+
+        $request->session()->flash('success', 'Edytowano pracownika');
+        return redirect()->action('DepartmentController@show', ['department'=> $department, 'employees' => $emplyees]);
     }
 
     public function create()

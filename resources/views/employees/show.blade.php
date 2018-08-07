@@ -40,4 +40,5 @@
             <a class="btn btn-success" href="{{ route('employees.edit', $employee) }}">edytuj</a>
         </div>
     </div>
+
 @stop

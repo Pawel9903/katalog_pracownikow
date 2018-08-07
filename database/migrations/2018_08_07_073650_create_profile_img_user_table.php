@@ -15,9 +15,6 @@ class CreateProfileImgUserTable extends Migration
     {
         Schema::create('profile_img_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('employee_id');
-            $table->foreign('employee_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }

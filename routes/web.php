@@ -34,5 +34,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('pdf/{department}',array('as'=>'departments.pdf','uses'=>'DepartmentController@pdf'));
+Route::get('departments/{department}/addEmployees',array('as'=>'departments.addEmployees','uses'=>'DepartmentController@addEmployees'));
 
-Route::get('pdf/{department}',array('as'=>'pdf','uses'=>'DepartmentController@pdf'));
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
