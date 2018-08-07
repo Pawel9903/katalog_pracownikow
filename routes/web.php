@@ -35,4 +35,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('pdf/{id}',array('as'=>'pdf','uses'=>'DepartmentController@pdf'));
+Route::get('pdf/{department}',array('as'=>'pdf','uses'=>'DepartmentController@pdf'));

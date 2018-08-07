@@ -22,15 +22,13 @@ class DepartmentController extends Controller
         return view('departments.index', ['departments' => $departments]);
     }
 
-    public function show($id)
+    public function show(Department $department)
     {
-        $department = Department::findOrfail($id);
         $department->sortable()->paginate(5);
 
 
-        return view('departments.show', ['department'=>$department]);
+        return view('departments.show', ['department'=> $department]);
     }
-
 
     public function create()
     {
@@ -52,37 +50,34 @@ class DepartmentController extends Controller
     }
 
 
-    public function destroy($id, Request $request)
+    public function destroy(Department $department, Request $request)
     {
-        $department = Department::where('id', $id)->delete();
+        $department->delete();
 
         $request->session()->flash('success', 'Usunięto dział');
         return redirect()->action('DepartmentController@index');
     }
 
-    public function edit($id)
+    public function edit(Department $department)
     {
-        $department = Department::findOrFail($id);
         return view('departments.edit', ['department'=>$department]);
     }
 
-    public function update($id, Request $request)
+    public function update(Department $department, Request $request)
     {
         $validationData = $request->validate([
             "name" => "required",
             "description" => "required",
         ]);
 
-        $department = Department::findOrFail($id);
         $department->update($request->all());
 
         $request->session()->flash('success', 'Edytowano dział');
         return redirect()->action('DepartmentController@index');
     }
 
-    public function pdf($id)
+    public function pdf(Department $department)
     {
-        $department = Department::findOrfail($id);
         return PDF::loadView('departments.pdf',['department'=>$department])->stream($department->name.'.pdf');
     }
 }

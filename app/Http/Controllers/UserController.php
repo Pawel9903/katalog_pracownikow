@@ -45,27 +45,24 @@ class UserController extends Controller
         return redirect()->action('UserController@index');
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrfail($id);
-
         return view('users.show', ['user'=>$user]);
     }
 
-    public function destroy($id, Request $request)
+    public function destroy(User $user, Request $request)
     {
-        $user = User::where('id', $id)->delete();
+        $user->delete();
         $request->session()->flash('success', 'Usunięto użytkownika');
         return redirect()->action('UserController@index');
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        $user = User::findOrFail($id);
         return view('users.edit', ['user'=>$user]);
     }
 
-    public function update($id, Request $request)
+    public function update(User $user, Request $request)
     {
         $validationData = $request->validate([
             "name" => "required",
@@ -73,8 +70,6 @@ class UserController extends Controller
             "password" => "required|min:6",
         ]);
 
-
-        $user = User::findOrFail($id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->admin = $request->input('admin');

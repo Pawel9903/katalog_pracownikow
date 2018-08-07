@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <a class="btn btn-primary" href="{{ route('pdf', ['id'=>$department->id]) }}">Generuj PDF</a>
+    <a class="btn btn-primary" href="{{ route('pdf', ['department'=>$department]) }}">Generuj PDF</a>
 
     <h4>Pracownicy działu:</h4>
     <table class="table table-striped">
@@ -33,9 +33,9 @@
                 <th>{{$employee->phone}}</th>
                 <th>{{$employee->email}}</th>
                 <th>{{$employee->created_at}}</th>
-                <th><a class="btn btn-success" href="{{ route('employees.show', $employee->id) }}">wyświetl</a></th>
-                <th><a class="btn btn-primary" href="{{ route('employees.edit', $employee->id) }}">edytuj</a></th>
-                <th><form action="{{ route('employees.destroy', ['id' => $employee->id]) }}" method="post">
+                <th><a class="btn btn-success" href="{{ route('employees.show', $employee) }}">wyświetl</a></th>
+                <th><a class="btn btn-primary" href="{{ route('employees.edit', $employee) }}">edytuj</a></th>
+                <th><form action="{{ route('employees.destroy', $employee) }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <div class="form-group">

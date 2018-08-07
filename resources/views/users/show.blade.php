@@ -15,7 +15,7 @@
     </div>
     <div class="container">
         <div class="">
-            <form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post">
+            <form action="{{ route('users.destroy', ['id' => $user]) }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <div class="form-group">
@@ -23,6 +23,6 @@
                 </div>
             </form>
         </div>
-        <a class="btn btn-success" href="{{ route('users.edit', $user->id) }}">edytuj</a>
+        <a class="btn btn-success" href="{{ route('users.edit', $user) }}">edytuj</a>
     </div>
 @stop
