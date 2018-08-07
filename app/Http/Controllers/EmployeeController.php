@@ -44,7 +44,7 @@ class EmployeeController extends Controller
 
         if($request->hasFile('imgUrl'))
         {
-            $employee->imgUrl = Storage::disk('local')->putFile('profile', $request->file('imgUrl'));
+            $employee->imgUrl = Storage::disk('public')->putFile('/profile', $request->file('imgUrl'));
             /*$photoName = time().'.'.$request->imgUrl->getClientOriginalExtension();
             $request->imgUrl->move(public_path('avatars'), $photoName);
             $employee->imgUrl = $photoName;*/
@@ -65,6 +65,7 @@ class EmployeeController extends Controller
 
     public function destroy(Employee $employee, Request $request)
     {
+        dd(Storage::disk('public')->delete($employee->imgUrl));
         $employee->delete();
         $request->session()->flash('success', 'Usunięto pracownika');
         return redirect()->action('EmployeeController@index');

@@ -7,7 +7,7 @@
                 <div class="well well-sm">
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
-                            <img src="{{ storage_path($employee->imgUrl) }}" alt="" class="img-rounded img-responsive" />
+                            <img src="{{ asset('storage/'.$employee->imgUrl) }}" alt="" class="img-rounded img-responsive" />
                         </div>
                         <div class="col-sm-6 col-md-8">
                                 <h4>{{ $employee->name." ".$employee->surname }}</h4>
