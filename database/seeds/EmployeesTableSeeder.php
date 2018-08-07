@@ -12,9 +12,12 @@ class EmployeesTableSeeder extends Seeder
      */
     public function run()
     {
-        Db::table('users')->insert([
-            'employee_id' => rand(1,10),
-            'department_id' => rand(1,10),
+        Db::table('employees')->insert([
+            'name' => str_random(10),
+            'surname' => str_random(10),
+            'email' => str_random(10).'@gmail.com',
+            'phone' => 123456789,
+            'description' => str_random(20),
         ]);
     }
 }

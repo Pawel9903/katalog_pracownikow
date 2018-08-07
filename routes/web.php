@@ -24,18 +24,11 @@ Route::get('/employees/details/{id}', 'EmployeeController@details');*/
 
 Route::group(['middleware' => ['web']], function ()
 {
+    Route::resource('departments', 'DepartmentController');
+    Route::resource('users', 'UserController');
     Route::resource('employees', 'EmployeeController');
 });
 
-Route::group(['middleware' => ['web']], function ()
-{
-    Route::resource('departments', 'DepartmentController');
-});
-
-Route::group(['middleware' => ['web']], function ()
-{
-    Route::resource('users', 'UserController');
-});
 
 Auth::routes();
 

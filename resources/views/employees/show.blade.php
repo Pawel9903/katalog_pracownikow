@@ -7,10 +7,9 @@
                 <div class="well well-sm">
                     <div class="row">
                         <div class="col-sm-6 col-md-4">
-                            <img @if($employee->imgUrl) src="{{ asset('avatars/'.$employee->imgUrl) }} @endif" src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                            <img src="{{ storage_path($employee->imgUrl) }}" alt="" class="img-rounded img-responsive" />
                         </div>
                         <div class="col-sm-6 col-md-8">
-
                                 <h4>{{ $employee->name." ".$employee->surname }}</h4>
                             <ul>
                                 <li>email: {{ $employee->email }}</li>
@@ -29,17 +28,16 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="">
-            <form action="{{ route('employees.destroy', ['id' => $employee->id]) }}" method="post">
+            <form action="{{ route('employees.destroy',$employee) }}" method="post">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <div class="form-group">
                     <button type="submit" class="btn btn-danger">Usuń</button>
                 </div>
             </form>
-            <a class="btn btn-success" href="{{ route('employees.edit', $employee->id) }}">edytuj</a>
+            <a class="btn btn-success" href="{{ route('employees.edit', $employee) }}">edytuj</a>
         </div>
     </div>
 @stop

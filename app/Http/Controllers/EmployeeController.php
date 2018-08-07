@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use App\Employee;
-use App\Section;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class EmployeeController extends Controller
@@ -42,11 +42,12 @@ class EmployeeController extends Controller
 
         $employee = new Employee($request->all());
 
-        if($request->imgUrl)
+        if($request->hasFile('imgUrl'))
         {
-            $photoName = time().'.'.$request->imgUrl->getClientOriginalExtension();
+            $employee->imgUrl = Storage::disk('local')->putFile('profile', $request->file('imgUrl'));
+            /*$photoName = time().'.'.$request->imgUrl->getClientOriginalExtension();
             $request->imgUrl->move(public_path('avatars'), $photoName);
-            $employee->imgUrl = $photoName;
+            $employee->imgUrl = $photoName;*/
         }
 
         $employee->save();
@@ -57,28 +58,25 @@ class EmployeeController extends Controller
         return redirect()->action('EmployeeController@index');
     }
 
-    public function show($id)
+    public function show(Employee $employee)
     {
-        $employee = Employee::findOrfail($id);
-
         return view('employees.show', ['employee'=>$employee]);
     }
 
-    public function destroy($id, Request $request)
+    public function destroy(Employee $employee, Request $request)
     {
-        $employee = Employee::where('id', $id)->delete();
+        $employee->delete();
         $request->session()->flash('success', 'Usunięto pracownika');
         return redirect()->action('EmployeeController@index');
     }
 
-    public function edit($id)
+    public function edit(Employee $employee)
     {
         $departments = Department::pluck('name', 'id');
-        $employee = Employee::findOrFail($id);
         return view('employees.edit', ['employee'=>$employee, 'departments' => $departments]);
     }
 
-    public function update($id, Request $request)
+    public function update(Employee $employee, Request $request)
     {
         $validationData = $request->validate([
             "name" => "required",
@@ -88,7 +86,6 @@ class EmployeeController extends Controller
             "description" => "required",
         ]);
 
-        $employee = Employee::findOrFail($id);
         $employee->update($request->all());
 
         $departmentId = $request->input('departmentsList');
