@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    {{ Form::model($department,['method'=>'PATCH','action'=>['DepartmentController@update', $department->id]]) }}
+    {{ Form::model($department,['method'=>'PATCH','action'=>['DepartmentController@update', $department]]) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Nazwa:') }}

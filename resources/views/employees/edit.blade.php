@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    {{ Form::model($employee,['method'=>'PATCH','action'=>['EmployeeController@update', $employee->id]]) }}
+    {{ Form::model($employee,['files' => true,'method'=>'PATCH','action'=>['EmployeeController@update', $employee]]) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Imię:') }}
@@ -36,6 +36,11 @@
     <div class="form-group">
         {{ Form::label('description', 'Opis:') }}
         {{ Form::textarea('description', $employee->description, ['class'=>'form-control']) }}
+    </div>
+
+    <div class="form-group">
+        {{Form::label('imgUrl', 'Dodaj zdjęcie',['class' => 'control-label'])}}
+        {{ Form::file('imgUrl') }}
     </div>
 
     <div class="form-group">

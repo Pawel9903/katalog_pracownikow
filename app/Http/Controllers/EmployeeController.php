@@ -45,9 +45,6 @@ class EmployeeController extends Controller
         if($request->hasFile('imgUrl'))
         {
             $employee->imgUrl = Storage::disk('public')->putFile('/profile', $request->file('imgUrl'));
-            /*$photoName = time().'.'.$request->imgUrl->getClientOriginalExtension();
-            $request->imgUrl->move(public_path('avatars'), $photoName);
-            $employee->imgUrl = $photoName;*/
         }
 
         $employee->save();
@@ -65,7 +62,7 @@ class EmployeeController extends Controller
 
     public function destroy(Employee $employee, Request $request)
     {
-        dd(Storage::disk('public')->delete($employee->imgUrl));
+        Storage::disk('public')->delete($employee->imgUrl);
         $employee->delete();
         $request->session()->flash('success', 'Usunięto pracownika');
         return redirect()->action('EmployeeController@index');
@@ -87,7 +84,22 @@ class EmployeeController extends Controller
             "description" => "required",
         ]);
 
-        $employee->update($request->all());
+        $employee->name = $request->input('name');
+        $employee->surname = $request->input('surname');
+        $employee->email = $request->input('email');
+        $employee->description = $request->input('description');
+        $employee->phone = $request->input('phone');
+
+        if($request->hasFile('imgUrl'))
+        {
+            if($employee->imgUrl)
+            {
+                Storage::disk('public')->delete($employee->imgUrl);
+            }
+            $employee->imgUrl = Storage::disk('public')->putFile('/profile', $request->file('imgUrl'));
+        }
+
+        $employee->update();
 
         $departmentId = $request->input('departmentsList');
         $employee->departments()->attach($departmentId);

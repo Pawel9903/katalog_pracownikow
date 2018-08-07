@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    {{ Form::model($user,['method'=>'PATCH','action'=>['UserController@update', $user->id]]) }}
+    {{ Form::model($user,['method'=>'PATCH','action'=>['UserController@update', $user]]) }}
 
     <div class="form-group">
         {{ Form::label('name', 'Imię:') }}
