@@ -34,13 +34,10 @@
                             <th>{{ str_limit($department->created_at)}}</th>
                             <th><a class="label label-success" href="{{ route('departments.show', $department) }}">wyświetl</a></th>
                             <th><a class="label label-primary" href="{{ route('departments.edit', $department) }}">edytuj</a></th>
-                            <th><form action="{{  route('departments.destroy', ['department' => $department]) }}" method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
+                            <th><a action="{{  route('departments.destroy', ['department' => $department]) }}" method="post">
                                     <div class="form-group">
                                         <button type="submit" class="label label-warning">Usuń</button>
-                                    </div>
-                                </form></th>
+                                    </div></a></th>
                         </tr>
                     @endforeach
                     {!! $departments->appends(\Request::except('page'))->render() !!}
