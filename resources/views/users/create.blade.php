@@ -29,12 +29,12 @@
 
             <div class="form-group">
                 {{ Form::label('password', 'Hasło:') }}
-                {{ Form::password('password', null, ['class'=>'form-control']) }}
+                {{ Form::password('password', ['class'=>'form-control', 'placeholder' => "Hasło"]) }}
             </div>
 
             <div class="form-group">
                 {{ Form::label('password_confirmation', 'Powtórz hasło:') }}
-                {{ Form::password('password_confirmation', null, ['class'=>'form-control']) }}
+                {{ Form::password('password_confirmation', ['class'=>'form-control', 'placeholder' => "Powtórz hasło"]) }}
             </div>
 
             <div class="form-group">
@@ -44,7 +44,7 @@
 
             <div class="form-group">
                 {{ Form::label('admin', 'Wybierz role:') }}
-                {{ Form::select('admin', [1=>'admin' , 0=>'user'] , null, ['class'=>'form-control']) }}
+                {{ Form::select('admin', [1=>'admin' , 0 =>'user'] , null, ['class'=>'form-control']) }}
             </div>
         </div>
             <div class="form-group">

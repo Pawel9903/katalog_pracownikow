@@ -23,22 +23,22 @@
 
             <div class="form-group">
                 {{ Form::label('name', 'Imię:') }}
-                {{ Form::text('name', null, ['class'=>'form-control']) }}
+                {{ Form::text('name', null, ['class'=>'form-control', 'placeholder' => "Imię"]) }}
             </div>
 
             <div class="form-group">
                 {{ Form::label('password', 'Nowe hasło:') }}
-                {{ Form::password('password', null, ['class'=>'form-control']) }}
+                {{ Form::password('password', ['class'=>'form-control', 'placeholder' => "Hasło"]) }}
             </div>
 
             <div class="form-group">
-                {{ Form::label('password_confirmation', 'powtórz hasło:') }}
-                {{ Form::password('password_confirmation', null, ['class'=>'form-control']) }}
+                {{ Form::label('password_confirmation', 'Powtórz hasło:') }}
+                {{ Form::password('password_confirmation', ['class'=>'form-control', 'placeholder' => "Powtórz hasło"]) }}
             </div>
 
             <div class="form-group">
                 {{ Form::label('email', 'Email:') }}
-                {{ Form::text('email', null, ['class'=>'form-control']) }}
+                {{ Form::text('email', null, ['class'=>'form-control', 'placeholder' => "Email"]) }}
             </div>
 
             <div class="form-group">

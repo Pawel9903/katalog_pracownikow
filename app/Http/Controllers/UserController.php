@@ -69,7 +69,7 @@ class UserController extends Controller
             "name" => "required",
             "email" => "required|email",
             "password" => "required|min:6",
-            'password_confirmation'=>'required_with:password|same:password',
+            'password_confirmation'=>'required_with:password',
         ]);
 
         $user->name = $request->input('name');
@@ -77,7 +77,7 @@ class UserController extends Controller
         $user->admin = $request->input('admin');
         $user->password = Hash::make($request->input('password'));
 
-        Mail::to($user->email)->send(new Welcome($user));
+        //Mail::to($user->email)->send(new Welcome($user));
 
         $user->save();
         $request->session()->flash('success', 'Edytowano użytkownika');
