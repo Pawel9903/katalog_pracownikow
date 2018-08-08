@@ -8,6 +8,8 @@
 
 @section('content')
     @if(Session::has('error'))
-        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+        <div class="callout callout-danger">
+            <h4>{{ Session::get('error') }}</h4>
+        </div>
     @endif
 @stop

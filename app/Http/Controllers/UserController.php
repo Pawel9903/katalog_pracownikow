@@ -35,6 +35,7 @@ class UserController extends Controller
             "name" => "required",
             'email' => "unique:users,email|email",
             "password" => "required|min:6",
+            'password_confirmation'=>'required_with:password|same:password',
         ]);
 
         $user = new User($request->all());
@@ -68,12 +69,16 @@ class UserController extends Controller
             "name" => "required",
             "email" => "required|email",
             "password" => "required|min:6",
+            'password_confirmation'=>'required_with:password|same:password',
         ]);
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->admin = $request->input('admin');
         $user->password = Hash::make($request->input('password'));
+
+        Mail::to($user->email)->send(new Welcome($user));
+
         $user->save();
         $request->session()->flash('success', 'Edytowano użytkownika');
         return redirect()->action('UserController@index');

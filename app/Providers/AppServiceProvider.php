@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\User;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 
     /**

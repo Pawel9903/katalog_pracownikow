@@ -30,7 +30,7 @@ return [
         'array'   => 'The :attribute must have between :min and :max items.',
     ],
     'boolean'              => 'The :attribute field must be true or false.',
-    'confirmed'            => 'The :attribute confirmation does not match.',
+    'confirmed'            => 'Pole :attribute nie jest zgodne.',
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
@@ -71,11 +71,11 @@ return [
     'required'             => 'Pole :attribute jest wymagane.',
     'required_if'          => 'The :attribute field is required when :other is :value.',
     'required_unless'      => 'The :attribute field is required unless :other is in :values.',
-    'required_with'        => 'The :attribute field is required when :values is present.',
-    'required_with_all'    => 'The :attribute field is required when :values is present.',
+    'required_with'        => 'Pole :attribute i :values muszą być takie same',
+    'required_with_all'    => 'Pole :attribute jest niezgodne z polem :values.',
     'required_without'     => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'same'                 => 'The :attribute and :other must match.',
+    'same'                 => 'Pole :attribute jest niezgodne.',
     'size'                 => [
         'numeric' => 'Pole :attribute musi składać się z cyfr.',
         'file'    => 'The :attribute must be :size kilobytes.',
@@ -123,6 +123,8 @@ return [
         "email" => "Email",
         "description" => "Opis",
         "password" => "Hasło",
+        "password_confirmation" => "Powtórz hasło",
+        'confirmation' => 'Potwierdż',
     ],
 
 ];

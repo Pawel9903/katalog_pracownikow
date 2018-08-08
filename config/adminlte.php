@@ -1,5 +1,8 @@
 <?php
 
+
+use Illuminate\Support\Facades\Auth;
+
 return [
 
     /*
@@ -114,13 +117,15 @@ return [
             'icon'    => 'file',
             'submenu' => [
                 [
-                    'text' => 'Wyśiwetl działy',
+                    'text' => 'Wyświetl działy',
                     'route'  => 'departments.index',
+                    'icon'    => 'user',
                 ],
                 [
                     'text' => 'Dodaj dział',
                     'route'  => 'departments.create',
                     'icon'    => 'lock',
+                    'icon_color' => 'red'
                 ],
 
             ],
@@ -132,11 +137,13 @@ return [
                 [
                     'text' => 'Wyświetl pracowników',
                     'route'  => 'employees.index',
+                    'icon'    => 'user',
                 ],
                 [
                     'text' => 'Dodaj pracownika',
                     'route'  => 'employees.create',
                     'icon'    => 'lock',
+                    'icon_color' => 'red'
                 ],
 
             ],
@@ -150,26 +157,28 @@ return [
                 [
                     'text' => 'Wyświetl konta',
                     'route'  => 'users.index',
+                    'icon'    => 'lock',
+                    'icon_color' => 'red'
                 ],
                 [
-                    'text'    => 'Admin',
-                    'icon'    => 'lock',
+                    'text'    => 'Dodaj użytkownika',
                     'route'  => 'users.create',
+                    'icon'    => 'lock',
+                    'icon_color' => 'red'
                 ],
-
             ],
         ],
 
-        'Informacje',
+        'Informacje dostępu',
         [
             'text'    => 'Admin',
             'icon'    => 'lock',
-            'color'    => 'red',
+            'icon_color' => 'red'
         ],
         [
             'text'    => 'Wszyscy',
             'icon'    => 'user',
-            'color'    => 'blue',
+            'color'    => 'aqua',
         ],
         
     ],
