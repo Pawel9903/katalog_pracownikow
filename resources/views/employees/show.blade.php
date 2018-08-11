@@ -35,16 +35,20 @@
                     </ul>
                 </li>
             </ul>
-
-                <form class="col-2" action="{{ route('employees.destroy',$employee) }}" method="post">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-danger">Usuń</button>
-                    </div>
-                </form>
-                <a href="{{ route('employees.edit', $employee) }}" class="btn btn-primary"><b>Edytuj</b></a>
-        </div>
+            <div class="row">
+                <div class="col-lg-1">
+                    <form class="" action="{{ route('employees.destroy',$employee) }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger">Usuń</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-1">
+                    <a href="{{ route('employees.edit', $employee) }}" class="btn btn-primary"><b>Edytuj</b></a>
+                </div>
+            </div>
         <!-- /.box-body -->
     </div>
     </div>

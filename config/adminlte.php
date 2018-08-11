@@ -115,11 +115,13 @@ return [
         [
             'text'    => 'Działy',
             'icon'    => 'file',
+            'icon_color'    => 'green',
             'submenu' => [
                 [
                     'text' => 'Wyświetl działy',
                     'route'  => 'departments.index',
                     'icon'    => 'user',
+                    'icon_color'    => 'aqua',
                 ],
                 [
                     'text' => 'Dodaj dział',
@@ -133,11 +135,13 @@ return [
         [
             'text'    => 'Pracownicy',
             'icon'    => 'user',
+            'icon_color'    => 'green',
             'submenu' => [
                 [
                     'text' => 'Wyświetl pracowników',
                     'route'  => 'employees.index',
                     'icon'    => 'user',
+                    'icon_color'    => 'aqua',
                 ],
                 [
                     'text' => 'Dodaj pracownika',
@@ -153,6 +157,7 @@ return [
         [
             'text'    => 'Zarządzaj kontami',
             'icon'    => 'user',
+            'icon_color'    => 'green',
             'submenu' => [
                 [
                     'text' => 'Wyświetl konta',
@@ -178,7 +183,7 @@ return [
         [
             'text'    => 'Wszyscy',
             'icon'    => 'user',
-            'color'    => 'aqua',
+            'icon_color'    => 'aqua',
         ],
         
     ],

@@ -23,14 +23,20 @@
                     </li>
                 </ul>
 
-                <a href="{{ route('users.edit', $user) }}" class="btn btn-primary btn-block "><b>Edytuj</b></a><br>
-                <form class="m-1" action="{{ route('users.destroy', ['id' => $user]) }}" method="post">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-danger btn-block">Usuń</button>
+                <div class="row">
+                    <div class="col-lg-1">
+                        <form class="" action="{{ route('users.destroy', ['id' => $user]) }}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger">Usuń</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                    <div class="col-lg-1">
+                        <a href="{{ route('users.edit', $user) }}" class="btn btn-primary"><b>Edytuj</b></a>
+                    </div>
+                </div>
             </div>
             <!-- /.box-body -->
         </div>
