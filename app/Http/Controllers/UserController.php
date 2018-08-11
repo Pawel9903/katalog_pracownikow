@@ -11,10 +11,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
 
     public function index()
     {
@@ -74,7 +70,7 @@ class UserController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->admin = $request->input('admin');
+        $user->role_id = $request->input('role_id');
         $user->password = Hash::make($request->input('password'));
 
         //Mail::to($user->email)->send(new Welcome($user));

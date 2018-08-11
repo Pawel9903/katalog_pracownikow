@@ -11,11 +11,6 @@ use phpDocumentor\Reflection\DocBlock\Tags\Return_;
 
 class EmployeeController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('admin', ['except' => ['index', 'show']]);
-    }
     public function index()
     {
         $employees = Employee::latest()->sortable()->paginate(5);

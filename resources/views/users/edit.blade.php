@@ -42,8 +42,8 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('admin', 'Wybierz role:') }}
-                {{ Form::select('admin', [1 => 'admin' , 0 => 'user'] , null, ['class'=>'form-control']) }}
+                {{ Form::label('role_id', 'Wybierz role:') }}
+                {{ Form::select('role_id', [1 => 'admin' , 2 => 'user'] , null, ['class'=>'form-control']) }}
             </div>
         </div>
             <div class="form-group">
