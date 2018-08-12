@@ -40,4 +40,8 @@ Route::get('departments/{department}/addEmployees',array('as'=>'departments.addE
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+    //Route::resource('voyager.departments', '\App\Http\Controllers\Voyager\DepartmentController')->middleware('admin.user');
+    Route::get('voyager.departments', '\App\Http\Controllers\Voyager\DepartmentController@index')->middleware('admin.user');
+    Route::get('voyager.employees', '\App\Http\Controllers\Voyager\EmployeeController@index')->middleware('admin.user');
+
 });
